@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>MJTextRead</title>
+        <style>
+.line-1{
+    position: relative;
+    margin-top: 50px;
+    top: 50%;  
+    color: green;
+    width: 100%;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 100%;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/"><h1>MJTextUtils</h1></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Welcome to the MJTextUtils !</strong> Aww yeah, Enter your text below
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <h3 class="line-1 anim-typewriter">You can do anything with your text here!","Enter your text here and let Text Utils do the magic!</h3>
+          <h4>{{message}}</h4>
+        <div class="container my-10" style="margin-bottom: 50px;">
+            <form action='/analyze' method='POST'> 
+                <!--this code for CSRF:Cross-site request forgery  -->
+                {% csrf_token %}
+                <textarea class="form-control" rows="15" name="text"
+                placeholder="Enter Your Text Here" required=true></textarea>
+                <br>
+                <div class="custom-control custom-switch">
+                     <input type="checkbox" name="removepanc" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Remove Panctuations</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" name="countword" class="custom-control-input" id="customSwitch2">
+                    <label class="custom-control-label" for="customSwitch2">Count Words</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" name="countchar" class="custom-control-input" id="customSwitch3">
+                    <label class="custom-control-label" for="customSwitch3">Count Characters</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" name="xtraspace" class="custom-control-input" id="customSwitch4">
+                    <label class="custom-control-label" for="customSwitch4">Remove Extra Spase</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" name="xreplace" class="custom-control-input" id="customSwitch5">
+                    <label class="custom-control-label" for="customSwitch5">Replace</label><br>
+                    <input type="text" name="oldchar" id="oldchar" placeholder="target">
+                    <input type="text" name="newchar" id="newchar" placeholder="new">
+                  </div>
+                <input type="radio" name="formate" value="0">All Capital letters
+                <input type="radio" name="formate" value="1">All Small letters
+                <input type="radio" name="formate" value="2">Full captalizesd<br>
+                <br>
+                <button class="btn btn-success"  type='submit'>Analyze Text</button>
+            </form>
+        </div>
+       
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+
+    </body>
+</html>
